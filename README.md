@@ -1,4 +1,4 @@
-# PomoDrip
+# PomoDrip 🍅
 
 Pomodoro timer by the Algo Drip team!
 
