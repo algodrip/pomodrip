@@ -27,4 +27,4 @@ class Timer:
 
     def get_elapsed_time(self):
         """Return the elapsed time"""
-        return time.perf_counter() - self._start_time)
+        return time.perf_counter() - self._start_time
