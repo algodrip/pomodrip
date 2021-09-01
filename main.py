@@ -2,15 +2,14 @@ import time
 from timer import Timer
 
 def main():
-    t = Timer()
+    t = Timer(8)
     t.start()
 
     print("Starting pomodoro timer...")
-    elapsed_seconds = 0
-    while elapsed_seconds < 8:
-        elapsed_seconds = time.perf_counter() - t._start_time
-        time.sleep(0.1)
+    while not t.timer_is_up():
+        time.sleep(1)
 
+    print("Time's up! 🎊")
     t.stop()
 
 
