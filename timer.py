@@ -33,7 +33,4 @@ class Timer:
     def timer_is_up(self):
         """Check the elapsed time, and return True
            if the timer is up"""
-        if self.get_elapsed_time() >= self.duration:
-            return True
-        else:
-            return False
+        return self.get_elapsed_time() >= self.duration
