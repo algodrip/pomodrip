@@ -30,16 +30,19 @@ minute_entry.place(x = 130, y = 20)
 second_entry = tk.Entry(root, font = ("Arial", 12), textvariable = second, width = 5)
 second_entry.place(x = 180, y = 20)
 
-# Converts seconds into hour, minute, and second
+
+# Converts seconds into hour, minute, and secon
 def time_input():
 	Timing = 0
 	try:
 		Timing = int(hour.get())*3600 + int(minute.get())*60 + int(second.get())
 	except TypeError:
+
 		messagebox.showinfo("Error","Please check your entry.")
 	finally:
 		if Timing == 0 or Timing is None:
 			messagebox.showinfo("Error", "Enter a Value.")
+
 	while Timing > -1:
 		# converts minutes to seconds
 		mins, secs = divmod(Timing, 60)
@@ -49,7 +52,7 @@ def time_input():
 		if mins > 60:
 			hours, mins = divmod(mins, 60)
 
-			# displays 2 digits
+		# displays 2 digits
 		hour.set("{0:2d}".format(hours))
 		minute.set("{0:2d}".format(mins))
 		second.set("{0:2d}".format(secs))
