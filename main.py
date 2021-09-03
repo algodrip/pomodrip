@@ -1,7 +1,6 @@
 import tkinter as tk
 import time
 from tkinter import messagebox
-import timer
 
 # creates window
 root = tk.Tk()
@@ -31,44 +30,44 @@ second_entry = tk.Entry(root, font = ("Arial", 12), textvariable = second, width
 second_entry.place(x = 180, y = 20)
 
 
-# Converts seconds into hour, minute, and secon
+# Converts seconds into hour, minute, and second
 def time_input():
 	Timing = 0
 	try:
 		Timing = int(hour.get())*3600 + int(minute.get())*60 + int(second.get())
 	except TypeError:
-
 		messagebox.showinfo("Error","Please check your entry.")
 	finally:
 		if Timing == 0 or Timing is None:
 			messagebox.showinfo("Error", "Enter a Value.")
+		else:
+			while Timing > -1:
+				# converts minutes to seconds
+				mins, secs = divmod(Timing, 60)
 
-	while Timing > -1:
-		# converts minutes to seconds
-		mins, secs = divmod(Timing, 60)
+				# converts hours to minutes
+				hours = 0
+				if mins > 60:
+					hours, mins = divmod(mins, 60)
 
-		# converts hours to minutes
-		hours = 0
-		if mins > 60:
-			hours, mins = divmod(mins, 60)
+				# displays 2 digits
+				hour.set("{0:2d}".format(hours))
+				minute.set("{0:2d}".format(mins))
+				second.set("{0:2d}".format(secs))
 
-		# displays 2 digits
-		hour.set("{0:2d}".format(hours))
-		minute.set("{0:2d}".format(mins))
-		second.set("{0:2d}".format(secs))
+				# Updates the numbers displayed in the entrybox
+				root.update()
+				time.sleep(1)
 
-		root.update()
-		time.sleep(1)
-
-		# time's up display
-		if Timing == 0:
-			messagebox.showinfo("Timer", "Time's up! 🎊")
-			# sets the timer back to 00 instead of 0
-			hour.set("00")
-			minute.set("00")
-			second.set("00")
-		# subtracts the time
-		Timing -= 1
+				# time's up display
+				if Timing == 0:
+					messagebox.showinfo("Timer", "Time's up! 🎊")
+					# sets the timer back to 00 instead of 0
+					hour.set("00")
+					minute.set("00")
+					second.set("00")
+				# subtracts the time
+				Timing -= 1
 
 # Activation button
 Button_Entry = tk.Button(root, text = "Start!", bd = "5", command = time_input, width = 20, compound = "c")
