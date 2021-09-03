@@ -1,7 +1,7 @@
 import tkinter as tk
 import time
 from tkinter import messagebox
-from timer import *
+import timer
 
 # creates window
 root = tk.Tk()
