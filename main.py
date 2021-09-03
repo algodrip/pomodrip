@@ -31,7 +31,7 @@ second_entry = Entry(root, font = ("Arial", 12), textvariable = second, width = 
 second_entry.place(x = 180, y = 20)
 
 #Converts seconds into hour, minute, and second
-def timeinput():
+def time_input():
 	Timing = 0
 	try:
 		Timing = int(hour.get())*3600 + int(minute.get())*60 + int(second.get())
@@ -70,7 +70,7 @@ def timeinput():
 		Timing -= 1
 
 #Activation button
-Button_Entry = Button(root, text = "Start!", bd = "5", command = timeinput, width = 20, compound ="c")
+Button_Entry = Button(root, text = "Start!", bd = "5", command = time_input, width = 20, compound ="c")
 Button_Entry.place(x = 70, y = 120)
 
 # loops the window to keep it active
