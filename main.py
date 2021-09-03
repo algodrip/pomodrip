@@ -31,20 +31,26 @@ second_entry = Entry(root, font = ("Arial", 12), textvariable = second, width = 
 second_entry.place(x = 180, y = 20)
 
 #Converts seconds into hour, minute, and second
-def TimeInput():
+def timeinput():
+	Timing = 0
 	try:
 		Timing = int(hour.get())*3600 + int(minute.get())*60 + int(second.get())
-	except:
-		print("Check your entry")
+	except TypeError:
+		print("Please check your entry.")
+	except Exception as e:
+		print(e.message + e.args)
+	finally:
+		if Timing == 0:
+			print("Enter a Value.")
 	while Timing > -1:
 		#converts minutes to seconds
 		mins, secs = divmod(Timing,60)
 
-		#converts hours to minutes 
+		#converts hours to minutes
 		hours = 0
 		if mins > 60:
 			hours, mins = divmod(mins,60)
-			
+
 			#displays 2 digits
 		hour.set("{0:2d}".format(hours))
 		minute.set("{0:2d}".format(mins))
@@ -52,7 +58,7 @@ def TimeInput():
 
 		root.update()
 		time.sleep(1)
-		
+
 		#time's up display
 		if Timing == 0:
 			messagebox.showinfo("Timer", "Time's up! 🎊")
@@ -64,7 +70,7 @@ def TimeInput():
 		Timing -= 1
 
 #Activation button
-Button_Entry = Button(root, text = "Start!", bd = "5", command = TimeInput, width = 20, compound = "c")
+Button_Entry = Button(root, text = "Start!", bd = "5", command = timeinput, width = 20, compound ="c")
 Button_Entry.place(x = 70, y = 120)
 
 # loops the window to keep it active
