@@ -35,13 +35,10 @@ title_button_close = tk.Button(title_bar, text = "  x  ", font = ("Arial", 12), 
 title_button_close.place(x = 260, y = 0)
 
 !!!WARNING!!! This line of code does not function while root.overridedirect is set to True
-
-
 #creates a minimize button
 title_button_minimize = tk.Button(title_bar, text = "  _  ", font = ("Arial", 12), bd = 0, bg = "#010114", fg = "#ffa500", command = lambda: root.wm_state("iconic"))
 # places title bar minimize button
 title_button_minimize.place(x = 230, y = 0)
-
 !!!WARNING!!!
 
 
