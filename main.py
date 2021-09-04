@@ -33,17 +33,20 @@ title_button_close = tk.Button(title_bar, text = "  x  ", font = ("Arial", 12), 
 
 # places title bar close button
 title_button_close.place(x = 260, y = 0)
-'''
 
-''' !!!WARNING!!! This line of code does not function while root.overridedirect is set to True
+
+!!!WARNING!!! This line of code does not function while root.overridedirect is set to True
+
 
 #creates a minimize button
 title_button_minimize = tk.Button(title_bar, text = "  _  ", font = ("Arial", 12), bd = 0, bg = "#010114", fg = "#ffa500", command = lambda: root.wm_state("iconic"))
 # places title bar minimize button
 title_button_minimize.place(x = 230, y = 0)
-'''
 
-'''
+
+!!!WARNING!!!
+
+
 #Binds the title bar (allows it to be dragged)
 title_bar.bind("<B1-Motion>", drag_movement)
 title_label.bind("<B1-Motion>", drag_movement)
