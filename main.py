@@ -50,18 +50,18 @@ second_entry.place(x=190, y=30)
 
 def time_input():
     '''Converts seconds into hour, minute, and second'''
-    Timing = 0
+    timing = 0
     try:
-        Timing = int(hour.get())*3600 + int(minute.get())*60 + int(second.get())
+        timing = int(hour.get())*3600 + int(minute.get())*60 + int(second.get())
     except TypeError:
         messagebox.showinfo("Error","Please check your entry.")
     finally:
-        if Timing == 0 or Timing is None:
+        if timing == 0 or timing is None:
             messagebox.showinfo("Error", "Enter a Value.")
         else:
-            while Timing > -1:
+            while timing > -1:
                 # converts minutes to seconds
-                mins, secs = divmod(Timing, 60)
+                mins, secs = divmod(timing, 60)
                 # resizes the window
                 root.geometry("300x200")
                 # converts hours to minutes
@@ -79,7 +79,7 @@ def time_input():
                 time.sleep(1)
 
                 # time's up display
-                if Timing == 0:
+                if timing == 0:
                     messagebox.showinfo("Timer", "Time's up! 🎊")
                     # sets the timer back to 00 instead of 0
                     hour.set("00")
@@ -88,7 +88,7 @@ def time_input():
                     # resets the window size
                     root.geometry("700x200")
                 # subtracts the time
-                Timing -= 1
+                timing -= 1
 
 # Activation button
 Button_Entry = tk.Button(root, text="Start!", bd="0",
