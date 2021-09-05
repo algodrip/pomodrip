@@ -50,7 +50,10 @@ todo_list_entry = tk.Entry(root, font=(FONT, 12),
 
 
 def time_input():
-    '''Converts seconds into hour, minute, and second'''
+    '''Get the values from the hour, minute and seconds entries.
+    If the inputted values are correct, start the timer,
+    notifying the user when it finishes.
+    '''
     timing = 0
 
     try:
