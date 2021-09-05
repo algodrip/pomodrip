@@ -48,8 +48,8 @@ second_entry = tk.Entry(root, font=("Arial", 24),
 second_entry.place(x=190, y=30)
 
 
-# Converts seconds into hour, minute, and second
 def time_input():
+    '''Converts seconds into hour, minute, and second'''
     Timing = 0
     try:
         Timing = int(hour.get())*3600 + int(minute.get())*60 + int(second.get())
@@ -97,8 +97,8 @@ Button_Entry = tk.Button(root, text="Start!", bd="0",
                          fg="#C72C41", bg="#510A32")
 Button_Entry.place(x=10, y=75)
 
-# Defines timer_entry_clear function
 def second_entry_clear(en):
+    '''Defines timer_entry_clear function'''
     if second_entry.get() == "00" or second_entry.get() == "0":
         second_entry.delete(0, tk.END)
 
@@ -157,8 +157,8 @@ list_button_frame = tk.Frame(root)
 list_button_frame.place(x=550, y=30)
 
 
-# defines new task
 def new_task():
+    '''defines new task'''
     task = to_do_list_entry.get()
     if task != "":
         To_do_list.insert(tk.END, task)
@@ -166,8 +166,8 @@ def new_task():
         messagebox.showinfo("Error", "Please enter some task.")
 
 
-# defines delete task
 def del_task():
+    '''defines delete task'''
     To_do_list.delete(tk.ANCHOR)
 
 
