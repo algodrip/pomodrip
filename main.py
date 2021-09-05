@@ -2,15 +2,15 @@ import tkinter as tk
 import time
 from tkinter import messagebox
 
-# creates window
+# Create window
 root = tk.Tk()
-# title
+# Title
 root.title("PomoDrip")
-# window size
+# Window size
 root.geometry("650x200")
-# window background color
+# Window background color
 root.configure(background="#2D142C")
-# disables resizing of the window
+# Disable resizing of the window
 root.resizable(width=False, height=False)
 
 # Timer
@@ -20,12 +20,12 @@ hour = tk.StringVar()
 minute = tk.StringVar()
 second = tk.StringVar()
 
-# sets the values to 0
+# Set the values of time to 0
 hour.set("00")
 minute.set("00")
 second.set("00")
 
-# labels for the hours, minutes, and seconds
+# Labels for the hours, minutes, and seconds
 hour_text = tk.Label(root, font=("Arial", 12), fg="#EE4540")
 
 # Input for each variable
@@ -97,32 +97,35 @@ Button_Entry = tk.Button(root, text="Start!", bd="0",
                          fg="#C72C41", bg="#510A32")
 Button_Entry.place(x=10, y=75)
 
+
 def second_entry_clear(en):
     '''Defines timer_entry_clear function'''
     if second_entry.get() == "00" or second_entry.get() == "0":
         second_entry.delete(0, tk.END)
 
+
 def minute_entry_clear(en):
     if minute_entry.get() == "00" or minute_entry.get() == "0":
         minute_entry.delete(0, tk.END)
+
 
 def hour_entry_clear(en):
     if hour_entry.get() == "00" or hour_entry.get() == "0":
         hour_entry.delete(0, tk.END)
 
 
-# Binds the entry boxes
+# Bind the entry boxes
 hour_entry.bind("<Button-1>", hour_entry_clear)
 minute_entry.bind("<Button-1>", minute_entry_clear)
 second_entry.bind("<Button-1>", second_entry_clear)
 
 # TODO LIST
 
-# frame used to separate the to do list
+# Frame used to separate the to do list
 to_do_list_frame = tk.Frame(root)
 to_do_list_frame.place(x=300, y=30)
 
-# creating the actual to do list
+# Create the actual to do list
 To_do_list = tk.Listbox(to_do_list_frame, width=25,
                         height=7, font=("Arial", 12),
                         bd=0, fg="#C72C41",
@@ -130,29 +133,27 @@ To_do_list = tk.Listbox(to_do_list_frame, width=25,
 To_do_list.pack(side=tk.LEFT, fill=tk.BOTH)
 
 # task_list values
-task_list = [
+task_list = []
 
-]
-
-# inserting a new task
+# Insert a new task
 for item in task_list:
     To_do_list.insert(tk.END, item)
 
-# scroll bar for to do list
+# Scroll bar for to do list
 to_do_list_scroll_bar = tk.Scrollbar(to_do_list_frame)
 to_do_list_scroll_bar.pack(side=tk.RIGHT, fill=tk.BOTH)
 
-# controls for the scroll bar
+# Control for the scroll bar
 To_do_list.config(yscrollcommand=to_do_list_scroll_bar.set)
 to_do_list_scroll_bar.config(command=To_do_list.yview)
 
-# creates an entry box for the to do list
+# Create an entry box for the to do list
 to_do_list_entry = tk.Entry(root, font=("Arial", 12),
                             fg="#C72C41", bg="#510A32",
                             bd=1, width=26)
 to_do_list_entry.place(x=300, y=170)
 
-# creates a frame for the list buttons
+# Create a frame for the list buttons
 list_button_frame = tk.Frame(root)
 list_button_frame.place(x=550, y=30)
 
@@ -171,19 +172,19 @@ def del_task():
     To_do_list.delete(tk.ANCHOR)
 
 
-# inserts text into the listbox
+# Insert text into the listbox
 addtask_button = tk.Button(list_button_frame, text="Insert",
                            font=("Arial", 12), bd=0,
                            fg="#C72C41", bg="#510A32",
                            width=10, command=new_task)
 addtask_button.pack(fill=tk.BOTH, expand=True, side=tk.TOP)
 
-# deletes items in the list
+# Delete items in the list
 del_task_button = tk.Button(list_button_frame, text="Remove",
                             font=("Arial", 12), bd=0,
                             fg="#C72C41", bg="#510A32",
                             width=10, command=del_task)
 del_task_button.pack(fill=tk.BOTH, expand=True, side=tk.BOTTOM)
 
-# loops the window to keep it active
+# Loop the window to keep it active
 root.mainloop()
