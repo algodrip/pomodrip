@@ -91,11 +91,11 @@ def time_input():
                 timing -= 1
 
 # Activation button
-Button_Entry = tk.Button(root, text="Start!", bd="0",
+button_entry = tk.Button(root, text="Start!", bd="0",
                          command=time_input, width=38,
                          compound="c",
                          fg="#C72C41", bg="#510A32")
-Button_Entry.place(x=10, y=75)
+button_entry.place(x=10, y=75)
 
 
 def second_entry_clear(en):
@@ -122,36 +122,36 @@ second_entry.bind("<Button-1>", second_entry_clear)
 # --- Todo List ---
 
 # Frame used to separate the to do list
-to_do_list_frame = tk.Frame(root)
-to_do_list_frame.place(x=300, y=30)
+todo_list_frame = tk.Frame(root)
+todo_list_frame.place(x=300, y=30)
 
 # Create the actual to do list
-To_do_list = tk.Listbox(to_do_list_frame, width=25,
+todo_list = tk.Listbox(todo_list_frame, width=25,
                         height=7, font=("Arial", 12),
                         bd=0, fg="#C72C41",
                         bg="#510A32", activestyle="none") 
-To_do_list.pack(side=tk.LEFT, fill=tk.BOTH)
+todo_list.pack(side=tk.LEFT, fill=tk.BOTH)
 
 # task_list values
 task_list = []
 
 # Insert a new task
 for item in task_list:
-    To_do_list.insert(tk.END, item)
+    todo_list.insert(tk.END, item)
 
 # Scroll bar for to do list
-to_do_list_scroll_bar = tk.Scrollbar(to_do_list_frame)
-to_do_list_scroll_bar.pack(side=tk.RIGHT, fill=tk.BOTH)
+todo_list_scroll_bar = tk.Scrollbar(todo_list_frame)
+todo_list_scroll_bar.pack(side=tk.RIGHT, fill=tk.BOTH)
 
 # Control for the scroll bar
-To_do_list.config(yscrollcommand=to_do_list_scroll_bar.set)
-to_do_list_scroll_bar.config(command=To_do_list.yview)
+todo_list.config(yscrollcommand=todo_list_scroll_bar.set)
+todo_list_scroll_bar.config(command=todo_list.yview)
 
 # Create an entry box for the to do list
-to_do_list_entry = tk.Entry(root, font=("Arial", 12),
+todo_list_entry = tk.Entry(root, font=("Arial", 12),
                             fg="#C72C41", bg="#510A32",
                             bd=1, width=26)
-to_do_list_entry.place(x=300, y=170)
+todo_list_entry.place(x=300, y=170)
 
 # Create a frame for the list buttons
 list_button_frame = tk.Frame(root)
@@ -160,16 +160,16 @@ list_button_frame.place(x=550, y=30)
 
 def new_task():
     '''defines new task'''
-    task = to_do_list_entry.get()
+    task = todo_list_entry.get()
     if task != "":
-        To_do_list.insert(tk.END, task)
+        todo_list.insert(tk.END, task)
     else:
         messagebox.showinfo("Error", "Please enter some task.")
 
 
 def del_task():
     '''defines delete task'''
-    To_do_list.delete(tk.ANCHOR)
+    todo_list.delete(tk.ANCHOR)
 
 
 # Insert text into the listbox
