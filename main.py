@@ -135,7 +135,7 @@ todo_list_frame.place(x=300, y=30)
 todo_list = tk.Listbox(todo_list_frame, width=25,
                        height=7, font=(FONT, 12),
                        bd=0, fg=FOREGROUND,
-                       bg=BACKGROUND, activestyle="none") 
+                       bg=BACKGROUND, activestyle="none")
 todo_list.pack(side=tk.LEFT, fill=tk.BOTH)
 
 # task_list values
