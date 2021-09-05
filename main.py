@@ -8,6 +8,45 @@ FONT = "Arial"
 BACKGROUND = "#2D142C"
 ENTRY_FOREGROUND = "#C72C41"
 ENTRY_BACKGROUND = "#510A32"
+TODO_LIST = False
+
+# Create window
+root = tk.Tk()
+
+# Time variables
+hour = tk.StringVar()
+minute = tk.StringVar()
+second = tk.StringVar()
+
+# Input for each variable
+hour_entry = tk.Entry(root, font=(FONT, 24),
+                      textvariable=hour, width=5,
+                      fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
+                      justify="center", bd="0")
+hour_entry.place(x=10, y=30)
+
+minute_entry = tk.Entry(root, font=(FONT, 24),
+                        textvariable=minute, width=5,
+                        fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
+                        justify="center", bd="0")
+minute_entry.place(x=100, y=30)
+
+second_entry = tk.Entry(root, font=(FONT, 24),
+                        textvariable=second, width=5,
+                        fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
+                        justify="center", bd="0")
+second_entry.place(x=190, y=30)
+
+# Initialize necessary todo list variables
+todo_list_frame = tk.Frame(root)
+todo_list = tk.Listbox(todo_list_frame, width=25,
+                       height=7, font=(FONT, 12),
+                       bd=0, fg=ENTRY_FOREGROUND,
+                       bg=ENTRY_BACKGROUND, activestyle="none")
+# Create an entry box for the to do list
+todo_list_entry = tk.Entry(root, font=(FONT, 12),
+                           fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
+                           bd=1, width=26)
 
 
 def time_input():
@@ -16,7 +55,7 @@ def time_input():
     try:
         timing = int(hour.get())*3600 + int(minute.get())*60 + int(second.get())
     except TypeError:
-        messagebox.showinfo("Error","Please check your entry.")
+        messagebox.showinfo("Error, please check your entry.")
     finally:
         if timing == 0 or timing is None:
             messagebox.showinfo("Error", "Enter a Value.")
@@ -86,8 +125,6 @@ def del_task():
 def main():
     # ===== SETUP APPLICATION ======
 
-    # Create window
-    root = tk.Tk()
     # Title
     root.title(TITLE)
     # Window size
@@ -99,11 +136,6 @@ def main():
 
     # --- TIMER ---
 
-    # Variables
-    hour = tk.StringVar()
-    minute = tk.StringVar()
-    second = tk.StringVar()
-
     # Set the values of time to 0
     hour.set("00")
     minute.set("00")
@@ -112,25 +144,6 @@ def main():
     # Labels for the hours, minutes, and seconds
     # -- Unused so we are commenting it out for now
     # hour_text = tk.Label(root, font=(FONT, 12), fg="#EE4540")
-
-    # Input for each variable
-    hour_entry = tk.Entry(root, font=(FONT, 24),
-                          textvariable=hour, width=5,
-                          fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
-                          justify="center", bd="0")
-    hour_entry.place(x=10, y=30)
-
-    minute_entry = tk.Entry(root, font=(FONT, 24),
-                            textvariable=minute, width=5,
-                            fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
-                            justify="center", bd="0")
-    minute_entry.place(x=100, y=30)
-
-    second_entry = tk.Entry(root, font=(FONT, 24),
-                            textvariable=second, width=5,
-                            fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
-                            justify="center", bd="0")
-    second_entry.place(x=190, y=30)
 
     # Button to activate the timer
     button_entry = tk.Button(root, text="Start!", bd="0",
@@ -146,55 +159,47 @@ def main():
 
     # --- TO-DO LIST ---
 
-    # Frame used to separate the to do list
-    todo_list_frame = tk.Frame(root)
-    todo_list_frame.place(x=300, y=30)
+    if TODO_LIST:
+        # Frame used to separate the to do list
+        todo_list_frame.place(x=300, y=30)
 
-    # Create the actual to do list
-    todo_list = tk.Listbox(todo_list_frame, width=25,
-                           height=7, font=(FONT, 12),
-                           bd=0, fg=ENTRY_FOREGROUND,
-                           bg=ENTRY_BACKGROUND, activestyle="none")
-    todo_list.pack(side=tk.LEFT, fill=tk.BOTH)
+        # Create the actual to do list
+        todo_list.pack(side=tk.LEFT, fill=tk.BOTH)
 
-    # task_list values
-    task_list = []
+        # task_list values
+        task_list = []
 
-    # Insert a new task
-    for item in task_list:
-        todo_list.insert(tk.END, item)
+        # Insert a new task
+        for item in task_list:
+            todo_list.insert(tk.END, item)
 
-    # Scroll bar for to do list
-    todo_list_scroll_bar = tk.Scrollbar(todo_list_frame)
-    todo_list_scroll_bar.pack(side=tk.RIGHT, fill=tk.BOTH)
+        # Scroll bar for to do list
+        todo_list_scroll_bar = tk.Scrollbar(todo_list_frame)
+        todo_list_scroll_bar.pack(side=tk.RIGHT, fill=tk.BOTH)
 
-    # Control for the scroll bar
-    todo_list.config(yscrollcommand=todo_list_scroll_bar.set)
-    todo_list_scroll_bar.config(command=todo_list.yview)
+        # Control for the scroll bar
+        todo_list.config(yscrollcommand=todo_list_scroll_bar.set)
+        todo_list_scroll_bar.config(command=todo_list.yview)
 
-    # Create an entry box for the to do list
-    todo_list_entry = tk.Entry(root, font=(FONT, 12),
-                               fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
-                               bd=1, width=26)
-    todo_list_entry.place(x=300, y=170)
+        todo_list_entry.place(x=300, y=170)
 
-    # Create a frame for the list buttons
-    list_button_frame = tk.Frame(root)
-    list_button_frame.place(x=550, y=30)
+        # Create a frame for the list buttons
+        list_button_frame = tk.Frame(root)
+        list_button_frame.place(x=550, y=30)
 
-    # Insert text into the listbox
-    addtask_button = tk.Button(list_button_frame, text="Insert",
-                               font=(FONT, 12), bd=0,
-                               fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
-                               width=10, command=new_task)
-    addtask_button.pack(fill=tk.BOTH, expand=True, side=tk.TOP)
+        # Insert text into the listbox
+        addtask_button = tk.Button(list_button_frame, text="Insert",
+                                   font=(FONT, 12), bd=0,
+                                   fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
+                                   width=10, command=new_task)
+        addtask_button.pack(fill=tk.BOTH, expand=True, side=tk.TOP)
 
-    # Delete items in the list
-    del_task_button = tk.Button(list_button_frame, text="Remove",
-                                font=(FONT, 12), bd=0,
-                                fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
-                                width=10, command=del_task)
-    del_task_button.pack(fill=tk.BOTH, expand=True, side=tk.BOTTOM)
+        # Delete items in the list
+        del_task_button = tk.Button(list_button_frame, text="Remove",
+                                    font=(FONT, 12), bd=0,
+                                    fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
+                                    width=10, command=del_task)
+        del_task_button.pack(fill=tk.BOTH, expand=True, side=tk.BOTTOM)
 
     # Loop the window to keep it active
     root.mainloop()
