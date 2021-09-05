@@ -52,43 +52,50 @@ todo_list_entry = tk.Entry(root, font=(FONT, 12),
 def time_input():
     '''Converts seconds into hour, minute, and second'''
     timing = 0
+
     try:
         timing = int(hour.get())*3600 + int(minute.get())*60 + int(second.get())
+
     except TypeError:
-        messagebox.showinfo("Error, please check your entry.")
+        messagebox.showinfo("Error", "Please check your entry.")
+
     finally:
+
         if timing == 0 or timing is None:
-            messagebox.showinfo("Error", "Enter a Value.")
+            messagebox.showinfo("Error", "Enter a value.")
+
         else:
             while timing > -1:
-                # converts minutes to seconds
+
+                # Convert minutes to seconds
                 mins, secs = divmod(timing, 60)
-                # resizes the window
+                # Resize the window
                 root.geometry("300x200")
-                # converts hours to minutes
+                # Convert hours to minutes
                 hours = 0
                 if mins > 60:
                     hours, mins = divmod(mins, 60)
 
-                # displays 2 digits
+                # Display 2 digits
                 hour.set("{0:2d}".format(hours))
                 minute.set("{0:2d}".format(mins))
                 second.set("{0:2d}".format(secs))
 
-                # Updates the numbers displayed in the entrybox
+                # Update the numbers displayed in the entrybox
                 root.update()
                 time.sleep(1)
 
-                # time's up display
+                # Time's up display
                 if timing == 0:
                     messagebox.showinfo("Timer", "Time's up! 🎊")
-                    # sets the timer back to 00 instead of 0
+                    # Set the timer back to 00 instead of 0
                     hour.set("00")
                     minute.set("00")
                     second.set("00")
-                    # resets the window size
+                    # Resets the window size
                     root.geometry("700x200")
-                # subtracts the time
+
+                # Subtract the time
                 timing -= 1
 
 
