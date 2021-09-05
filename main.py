@@ -9,7 +9,6 @@ ENTRY_FOREGROUND = "#C72C41"
 ENTRY_BACKGROUND = "#510A32"
 
 
-
 def time_input():
     '''Converts seconds into hour, minute, and second'''
     timing = 0
@@ -83,6 +82,8 @@ def del_task():
     todo_list.delete(tk.ANCHOR)
 
 
+# ===== SETUP APPLICATION ======
+
 # Create window
 root = tk.Tk()
 # Title
@@ -94,7 +95,7 @@ root.configure(background=BACKGROUND)
 # Disable resizing of the window
 root.resizable(width=False, height=False)
 
-# --- Timer ---
+# --- TIMER ---
 
 # Variables
 hour = tk.StringVar()
@@ -143,7 +144,7 @@ hour_entry.bind("<Button-1>", hour_entry_clear)
 minute_entry.bind("<Button-1>", minute_entry_clear)
 second_entry.bind("<Button-1>", second_entry_clear)
 
-# --- Todo List ---
+# --- TO-DO LIST ---
 
 # Frame used to separate the to do list
 todo_list_frame = tk.Frame(root)
