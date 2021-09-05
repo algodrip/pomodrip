@@ -1,6 +1,7 @@
 import tkinter as tk
 import time
 from tkinter import messagebox
+from sys import argv
 
 # Constants
 TITLE = "PomoDrip"
@@ -8,7 +9,6 @@ FONT = "Arial"
 BACKGROUND = "#2D142C"
 ENTRY_FOREGROUND = "#C72C41"
 ENTRY_BACKGROUND = "#510A32"
-TODO_LIST = False
 
 # Create window
 root = tk.Tk()
@@ -133,6 +133,24 @@ def main():
     root.configure(background=BACKGROUND)
     # Disable resizing of the window
     root.resizable(width=False, height=False)
+
+    # Parse args
+
+    # Help
+    if "--help" in argv:
+        print("usage: pomodrip [--todolist]")
+        print("")
+        print("PomoDrip is a tkinter-based Pomodoro Timer written in Python.")
+        print("")
+        print("OPTIONS:")
+        print("   --todolist   Enable a todo-list (EXPERIMENTAL)")
+        return
+
+    # Activate Todo list
+    if "--todolist" in argv:
+        TODO_LIST = True
+    else:
+        TODO_LIST = False
 
     # --- TIMER ---
 
