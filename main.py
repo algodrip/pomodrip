@@ -1,3 +1,6 @@
+'''PomoDrip: Pomodoro Timer by the Algo Drip team
+   Keep track of your tasks with 25 minute work sessions and 5 minute breaks!
+'''
 import tkinter as tk
 import time
 from tkinter import messagebox
@@ -20,7 +23,7 @@ hour = tk.StringVar()
 minute = tk.StringVar()
 second = tk.StringVar()
 
-# Input for each variable
+# Input for each time variable
 hour_entry = tk.Entry(root, font=(FONT, FONT_SIZE_ENTRIES),
                       textvariable=hour, width=5,
                       fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
