@@ -9,6 +9,8 @@ FONT = "Arial"
 BACKGROUND = "#2D142C"
 ENTRY_FOREGROUND = "#C72C41"
 ENTRY_BACKGROUND = "#510A32"
+FONT_SIZE_ENTRIES = 24
+FONT_SIZE_TODO = 12
 
 # Create window
 root = tk.Tk()
@@ -19,19 +21,19 @@ minute = tk.StringVar()
 second = tk.StringVar()
 
 # Input for each variable
-hour_entry = tk.Entry(root, font=(FONT, 24),
+hour_entry = tk.Entry(root, font=(FONT, FONT_SIZE_ENTRIES),
                       textvariable=hour, width=5,
                       fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
                       justify="center", bd="0")
 hour_entry.place(x=10, y=30)
 
-minute_entry = tk.Entry(root, font=(FONT, 24),
+minute_entry = tk.Entry(root, font=(FONT, FONT_SIZE_ENTRIES),
                         textvariable=minute, width=5,
                         fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
                         justify="center", bd="0")
 minute_entry.place(x=100, y=30)
 
-second_entry = tk.Entry(root, font=(FONT, 24),
+second_entry = tk.Entry(root, font=(FONT, FONT_SIZE_ENTRIES),
                         textvariable=second, width=5,
                         fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
                         justify="center", bd="0")
@@ -40,11 +42,11 @@ second_entry.place(x=190, y=30)
 # Initialize necessary todo list variables
 todo_list_frame = tk.Frame(root)
 todo_list = tk.Listbox(todo_list_frame, width=25,
-                       height=7, font=(FONT, 12),
+                       height=7, font=(FONT, FONT_SIZE_TODO),
                        bd=0, fg=ENTRY_FOREGROUND,
                        bg=ENTRY_BACKGROUND, activestyle="none")
 # Create an entry box for the to do list
-todo_list_entry = tk.Entry(root, font=(FONT, 12),
+todo_list_entry = tk.Entry(root, font=(FONT, FONT_SIZE_TODO),
                            fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
                            bd=1, width=26)
 
@@ -164,10 +166,7 @@ def main():
         return
 
     # Activate Todo list
-    if "--todolist" in argv:
-        show_todo_list = True
-    else:
-        show_todo_list = False
+    show_todo_list = bool("--todolist" in argv)
 
     # --- TIMER ---
 
@@ -178,7 +177,7 @@ def main():
 
     # Labels for the hours, minutes, and seconds
     # -- Unused so we are commenting it out for now
-    # hour_text = tk.Label(root, font=(FONT, 12), fg="#EE4540")
+    # hour_text = tk.Label(root, font=(FONT, FONT_SIZE_TODO), fg="#EE4540")
 
     # Button to activate the timer
     button_entry = tk.Button(root, text="Start!", bd="0",
@@ -224,14 +223,14 @@ def main():
 
         # Insert text into the listbox
         addtask_button = tk.Button(list_button_frame, text="Insert",
-                                   font=(FONT, 12), bd=0,
+                                   font=(FONT, FONT_SIZE_TODO), bd=0,
                                    fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
                                    width=10, command=new_task)
         addtask_button.pack(fill=tk.BOTH, expand=True, side=tk.TOP)
 
         # Delete items in the list
         del_task_button = tk.Button(list_button_frame, text="Remove",
-                                    font=(FONT, 12), bd=0,
+                                    font=(FONT, FONT_SIZE_TODO), bd=0,
                                     fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
                                     width=10, command=del_task)
         del_task_button.pack(fill=tk.BOTH, expand=True, side=tk.BOTTOM)
