@@ -8,50 +8,6 @@ BACKGROUND = "#2D142C"
 ENTRY_FOREGROUND = "#C72C41"
 ENTRY_BACKGROUND = "#510A32"
 
-# Create window
-root = tk.Tk()
-# Title
-root.title("PomoDrip")
-# Window size
-root.geometry("650x200")
-# Window background color
-root.configure(background=BACKGROUND)
-# Disable resizing of the window
-root.resizable(width=False, height=False)
-
-# --- Timer ---
-
-# Variables
-hour = tk.StringVar()
-minute = tk.StringVar()
-second = tk.StringVar()
-
-# Set the values of time to 0
-hour.set("00")
-minute.set("00")
-second.set("00")
-
-# Labels for the hours, minutes, and seconds
-hour_text = tk.Label(root, font=(FONT, 12), fg="#EE4540")
-
-# Input for each variable
-hour_entry = tk.Entry(root, font=(FONT, 24),
-                      textvariable=hour, width=5,
-                      fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
-                      justify="center", bd="0")
-hour_entry.place(x=10, y=30)
-
-minute_entry = tk.Entry(root, font=(FONT, 24),
-                        textvariable=minute, width=5,
-                        fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
-                        justify="center", bd="0")
-minute_entry.place(x=100, y=30)
-
-second_entry = tk.Entry(root, font=(FONT, 24),
-                        textvariable=second, width=5,
-                        fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
-                        justify="center", bd="0")
-second_entry.place(x=190, y=30)
 
 
 def time_input():
@@ -97,14 +53,6 @@ def time_input():
                 timing -= 1
 
 
-# Activation button
-button_entry = tk.Button(root, text="Start!", bd="0",
-                         command=time_input, width=38,
-                         compound="c",
-                         fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND)
-button_entry.place(x=10, y=75)
-
-
 def second_entry_clear(en):
     '''Defines timer_entry_clear function'''
     if second_entry.get() == "00" or second_entry.get() == "0":
@@ -119,6 +67,75 @@ def minute_entry_clear(en):
 def hour_entry_clear(en):
     if hour_entry.get() == "00" or hour_entry.get() == "0":
         hour_entry.delete(0, tk.END)
+
+
+def new_task():
+    '''defines new task'''
+    task = todo_list_entry.get()
+    if task != "":
+        todo_list.insert(tk.END, task)
+    else:
+        messagebox.showinfo("Error", "Please enter some task.")
+
+
+def del_task():
+    '''defines delete task'''
+    todo_list.delete(tk.ANCHOR)
+
+
+# Create window
+root = tk.Tk()
+# Title
+root.title("PomoDrip")
+# Window size
+root.geometry("650x200")
+# Window background color
+root.configure(background=BACKGROUND)
+# Disable resizing of the window
+root.resizable(width=False, height=False)
+
+# --- Timer ---
+
+# Variables
+hour = tk.StringVar()
+minute = tk.StringVar()
+second = tk.StringVar()
+
+# Set the values of time to 0
+hour.set("00")
+minute.set("00")
+second.set("00")
+
+# Labels for the hours, minutes, and seconds
+hour_text = tk.Label(root, font=(FONT, 12), fg="#EE4540")
+
+
+# Input for each variable
+hour_entry = tk.Entry(root, font=(FONT, 24),
+                      textvariable=hour, width=5,
+                      fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
+                      justify="center", bd="0")
+hour_entry.place(x=10, y=30)
+
+minute_entry = tk.Entry(root, font=(FONT, 24),
+                        textvariable=minute, width=5,
+                        fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
+                        justify="center", bd="0")
+minute_entry.place(x=100, y=30)
+
+second_entry = tk.Entry(root, font=(FONT, 24),
+                        textvariable=second, width=5,
+                        fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
+                        justify="center", bd="0")
+second_entry.place(x=190, y=30)
+
+
+# Activation button
+button_entry = tk.Button(root, text="Start!", bd="0",
+                         command=time_input, width=38,
+                         compound="c",
+                         fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND)
+button_entry.place(x=10, y=75)
 
 
 # Bind the entry boxes
@@ -163,20 +180,6 @@ todo_list_entry.place(x=300, y=170)
 # Create a frame for the list buttons
 list_button_frame = tk.Frame(root)
 list_button_frame.place(x=550, y=30)
-
-
-def new_task():
-    '''defines new task'''
-    task = todo_list_entry.get()
-    if task != "":
-        todo_list.insert(tk.END, task)
-    else:
-        messagebox.showinfo("Error", "Please enter some task.")
-
-
-def del_task():
-    '''defines delete task'''
-    todo_list.delete(tk.ANCHOR)
 
 
 # Insert text into the listbox
