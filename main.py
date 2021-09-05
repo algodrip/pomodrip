@@ -198,3 +198,6 @@ def main():
  
     # Loop the window to keep it active
     root.mainloop()
+
+if __name__ == "__main__":
+    main()
