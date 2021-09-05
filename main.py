@@ -13,6 +13,8 @@ root.configure(background="#2D142C")
 #disables resizing of the window
 root.resizable(width=False, height=False)
 
+''' TIMER '''
+
 # Variables
 hour = tk.StringVar()
 minute = tk.StringVar()
@@ -112,6 +114,8 @@ def hour_entry_clear(en):
 hour_entry.bind("<Button-1>", hour_entry_clear)
 minute_entry.bind("<Button-1>", minute_entry_clear)
 second_entry.bind("<Button-1>", second_entry_clear)
+
+''' TO DO LIST'''
 
 # frame used to separate the to do list
 to_do_list_frame = tk.Frame(root)
