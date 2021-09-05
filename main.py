@@ -45,7 +45,7 @@ todo_list = tk.Listbox(todo_list_frame, width=25,
                        height=7, font=(FONT, FONT_SIZE_TODO),
                        bd=0, fg=ENTRY_FOREGROUND,
                        bg=ENTRY_BACKGROUND, activestyle="none")
-# Create an entry box for the to do list
+# Create an entry box for the todo list
 todo_list_entry = tk.Entry(root, font=(FONT, FONT_SIZE_TODO),
                            fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
                            bd=1, width=26)
@@ -194,10 +194,10 @@ def main():
     # --- TO-DO LIST ---
 
     if show_todo_list:
-        # Frame used to separate the to do list
+        # Frame used to separate the todo list
         todo_list_frame.place(x=300, y=30)
 
-        # Create the actual to do list
+        # Create the actual todo list
         todo_list.pack(side=tk.LEFT, fill=tk.BOTH)
 
         # task_list values
@@ -207,7 +207,7 @@ def main():
         for item in task_list:
             todo_list.insert(tk.END, item)
 
-        # Scroll bar for to do list
+        # Scroll bar for todo list
         todo_list_scroll_bar = tk.Scrollbar(todo_list_frame)
         todo_list_scroll_bar.pack(side=tk.RIGHT, fill=tk.BOTH)
 
