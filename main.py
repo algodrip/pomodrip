@@ -110,7 +110,8 @@ def main():
     second.set("00")
 
     # Labels for the hours, minutes, and seconds
-    hour_text = tk.Label(root, font=(FONT, 12), fg="#EE4540")
+    # -- Unused so we are commenting it out for now
+    # hour_text = tk.Label(root, font=(FONT, 12), fg="#EE4540")
 
     # Input for each variable
     hour_entry = tk.Entry(root, font=(FONT, 24),
@@ -130,7 +131,6 @@ def main():
                             fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
                             justify="center", bd="0")
     second_entry.place(x=190, y=30)
-
 
     # Button to activate the timer
     button_entry = tk.Button(root, text="Start!", bd="0",
@@ -195,9 +195,10 @@ def main():
                                 fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
                                 width=10, command=del_task)
     del_task_button.pack(fill=tk.BOTH, expand=True, side=tk.BOTTOM)
- 
+
     # Loop the window to keep it active
     root.mainloop()
+
 
 if __name__ == "__main__":
     main()
