@@ -98,7 +98,7 @@ def time_input():
                     minute.set("00")
                     second.set("00")
                     # Resets the window size
-                    root.geometry("700x200")
+                    root.geometry("650x200")
 
                 # Subtract the time
                 timing -= 1
@@ -235,7 +235,7 @@ def main():
                                     width=10, command=del_task)
         del_task_button.pack(fill=tk.BOTH, expand=True, side=tk.BOTTOM)
 
-    # Loop the window to keep it active
+    # Loop the window
     root.mainloop()
 
 
