@@ -149,8 +149,8 @@ todo_list_scroll_bar.config(command=todo_list.yview)
 
 # Create an entry box for the to do list
 todo_list_entry = tk.Entry(root, font=("Arial", 12),
-                            fg="#C72C41", bg="#510A32",
-                            bd=1, width=26)
+                           fg="#C72C41", bg="#510A32",
+                           bd=1, width=26)
 todo_list_entry.place(x=300, y=170)
 
 # Create a frame for the list buttons
