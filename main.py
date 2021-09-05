@@ -144,6 +144,9 @@ def main():
         print("")
         print("OPTIONS:")
         print("   --todolist   Enable a todo-list (EXPERIMENTAL)")
+        print("")
+        print("")
+        print("Report bugs to https://github.com/algodrip/pomodrip/issues")
         return
 
     # Activate Todo list
