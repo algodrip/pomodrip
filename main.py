@@ -148,9 +148,9 @@ def main():
 
     # Activate Todo list
     if "--todolist" in argv:
-        TODO_LIST = True
+        show_todo_list = True
     else:
-        TODO_LIST = False
+        show_todo_list = False
 
     # --- TIMER ---
 
@@ -177,7 +177,7 @@ def main():
 
     # --- TO-DO LIST ---
 
-    if TODO_LIST:
+    if show_todo_list:
         # Frame used to separate the to do list
         todo_list_frame.place(x=300, y=30)
 
