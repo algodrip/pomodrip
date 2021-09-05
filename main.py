@@ -103,25 +103,25 @@ def time_input():
 
 
 def second_entry_clear(en):
-    '''Clear the seconds entry if it reaches zero'''
+    '''Clear the second entry if it reaches zero'''
     if second_entry.get() == "00" or second_entry.get() == "0":
         second_entry.delete(0, tk.END)
 
 
 def minute_entry_clear(en):
-    '''Clear the minutes entry if it reaches zero'''
+    '''Clear the minute entry if it reaches zero'''
     if minute_entry.get() == "00" or minute_entry.get() == "0":
         minute_entry.delete(0, tk.END)
 
 
 def hour_entry_clear(en):
-    '''Clear the hours entry if it reaches zero'''
+    '''Clear the hour entry if it reaches zero'''
     if hour_entry.get() == "00" or hour_entry.get() == "0":
         hour_entry.delete(0, tk.END)
 
 
 def new_task():
-    '''defines new task'''
+    '''Add a new task to the todo list'''
     task = todo_list_entry.get()
     if task != "":
         todo_list.insert(tk.END, task)
@@ -130,7 +130,7 @@ def new_task():
 
 
 def del_task():
-    '''defines delete task'''
+    '''Delete a task from the todo list'''
     todo_list.delete(tk.ANCHOR)
 
 
