@@ -103,17 +103,19 @@ def time_input():
 
 
 def second_entry_clear(en):
-    '''Defines timer_entry_clear function'''
+    '''Clear the seconds entry if it reaches zero'''
     if second_entry.get() == "00" or second_entry.get() == "0":
         second_entry.delete(0, tk.END)
 
 
 def minute_entry_clear(en):
+    '''Clear the minutes entry if it reaches zero'''
     if minute_entry.get() == "00" or minute_entry.get() == "0":
         minute_entry.delete(0, tk.END)
 
 
 def hour_entry_clear(en):
+    '''Clear the hours entry if it reaches zero'''
     if hour_entry.get() == "00" or hour_entry.get() == "0":
         hour_entry.delete(0, tk.END)
 
@@ -133,7 +135,9 @@ def del_task():
 
 
 def main():
-    # ===== SETUP APPLICATION ======
+    '''
+    ===== SETUP APPLICATION ======
+    '''
 
     # Title
     root.title(TITLE)
