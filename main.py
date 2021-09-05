@@ -3,6 +3,7 @@ import time
 from tkinter import messagebox
 
 # Constants
+TITLE = "PomoDrip"
 FONT = "Arial"
 BACKGROUND = "#2D142C"
 ENTRY_FOREGROUND = "#C72C41"
@@ -87,7 +88,7 @@ def del_task():
 # Create window
 root = tk.Tk()
 # Title
-root.title("PomoDrip")
+root.title(TITLE)
 # Window size
 root.geometry("650x200")
 # Window background color
