@@ -157,6 +157,15 @@ def main():
 
     # Help
     if "--help" in argv:
+        print(r"  _____                      _____       _       ")
+        print(r" |  __ \                    |  __ \     (_)      ")
+        print(r" | |__) |__  _ __ ___   ___ | |  | |_ __ _ _ __  ")
+        print(r" |  ___/ _ \| '_ ` _ \ / _ \| |  | | '__| | '_ \ ")
+        print(r" | |  | (_) | | | | | | (_) | |__| | |  | | |_) |")
+        print(r" |_|   \___/|_| |_| |_|\___/|_____/|_|  |_| .__/ ")
+        print(r"                                          | |    ")
+        print(r"                                          |_|    ")
+        print("")
         print("usage: pomodrip [--todolist]")
         print("")
         print("PomoDrip is a tkinter-based Pomodoro Timer written in Python.")
