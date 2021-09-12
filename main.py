@@ -4,6 +4,7 @@
 import tkinter as tk
 import time
 from tkinter import messagebox
+from tkinter import ttk
 from sys import argv
 
 # Constants
@@ -18,29 +19,71 @@ FONT_SIZE_TODO = 12
 # Create window
 root = tk.Tk()
 
-# Time variables
-hour = tk.StringVar()
-minute = tk.StringVar()
-second = tk.StringVar()
+# --- TIME VARIABLES ---
+
+# work
+hour_work = tk.StringVar()
+minute_work = tk.StringVar()
+second_work = tk.StringVar()
+# rest
+hour_rest = tk.StringVar()
+minute_rest = tk.StringVar()
+second_rest = tk.StringVar()
+
+# create tabs
+tab_frame = ttk.Notebook(root)
+tab_frame.pack(side=tk.LEFT)
+
+# tab designation
+tab_frame_1 = tk.Frame(tab_frame, width=300, height=200, bg=BACKGROUND)
+tab_frame_1.pack(fill=tk.BOTH, expand=1)
+
+tab_frame_2 = tk.Frame(tab_frame, width=300, height=200, bg=BACKGROUND)
+tab_frame_2.pack(fill=tk.BOTH, expand=1)
+
+# show tabs
+tab_frame.add(tab_frame_1, text="Timer")
+tab_frame.add(tab_frame_2, text="Progress")
 
 # Input for each time variable
-hour_entry = tk.Entry(root, font=(FONT, FONT_SIZE_ENTRIES),
-                      textvariable=hour, width=5,
-                      fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
-                      justify="center", bd="0")
-hour_entry.place(x=10, y=30)
 
-minute_entry = tk.Entry(root, font=(FONT, FONT_SIZE_ENTRIES),
-                        textvariable=minute, width=5,
-                        fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
-                        justify="center", bd="0")
-minute_entry.place(x=100, y=30)
+# work
+hour_entry_work = tk.Entry(tab_frame_1, font=(FONT, FONT_SIZE_ENTRIES),
+                           textvariable=hour_work, width=5,
+                           fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
+                           justify="center", bd="0")
+hour_entry_work.place(x=10, y=30)
 
-second_entry = tk.Entry(root, font=(FONT, FONT_SIZE_ENTRIES),
-                        textvariable=second, width=5,
-                        fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
-                        justify="center", bd="0")
-second_entry.place(x=190, y=30)
+minute_entry_work = tk.Entry(tab_frame_1, font=(FONT, FONT_SIZE_ENTRIES),
+                             textvariable=minute_work, width=5,
+                             fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
+                             justify="center", bd="0")
+minute_entry_work.place(x=100, y=30)
+
+second_entry_work = tk.Entry(tab_frame_1, font=(FONT, FONT_SIZE_ENTRIES),
+                             textvariable=second_work, width=5,
+                             fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
+                             justify="center", bd="0")
+second_entry_work.place(x=190, y=30)
+
+# rest
+hour_entry_rest = tk.Entry(tab_frame_1, font=(FONT, FONT_SIZE_ENTRIES),
+                           textvariable=hour_rest, width=5,
+                           fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
+                           justify="center", bd="0")
+hour_entry_rest.place(x=10, y=75)
+
+minute_entry_rest = tk.Entry(tab_frame_1, font=(FONT, FONT_SIZE_ENTRIES),
+                             textvariable=minute_rest, width=5,
+                             fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
+                             justify="center", bd="0")
+minute_entry_rest.place(x=100, y=75)
+
+second_entry_rest = tk.Entry(tab_frame_1, font=(FONT, FONT_SIZE_ENTRIES),
+                             textvariable=second_rest, width=5,
+                             fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND,
+                             justify="center", bd="0")
+second_entry_rest.place(x=190, y=75)
 
 # Initialize necessary todo list variables
 todo_list_frame = tk.Frame(root)
@@ -54,75 +97,141 @@ todo_list_entry = tk.Entry(root, font=(FONT, FONT_SIZE_TODO),
                            bd=1, width=26)
 
 
-def time_input():
+def time_input_rest():
     '''Get the values from the hour, minute and seconds entries.
     If the inputted values are correct, start the timer,
     notifying the user when it finishes.
     '''
-    timing = 0
+    timing_rest = 0
 
     try:
-        timing = int(hour.get())*3600 + int(minute.get())*60 + int(second.get())
+        timing_rest = int(hour_rest.get())*3600 + int(minute_rest.get())*60 + int(second_rest.get())
 
     except TypeError:
         messagebox.showinfo("Error", "Please check your entry.")
 
     finally:
 
-        if timing == 0 or timing is None:
+        if timing_rest == 0 or timing_rest is None:
             messagebox.showinfo("Error", "Enter a value.")
 
         else:
-            while timing > -1:
+            while timing_rest > -1:
 
                 # Convert minutes to seconds
-                mins, secs = divmod(timing, 60)
+                mins_rest, secs_rest = divmod(timing_rest, 60)
                 # Resize the window
                 root.geometry("300x200")
                 # Convert hours to minutes
-                hours = 0
-                if mins > 60:
-                    hours, mins = divmod(mins, 60)
+                hrs_rest = 0
+                if mins_rest > 60:
+                    hours, mins = divmod(mins_rest, 60)
 
                 # Display 2 digits
-                hour.set("{0:2d}".format(hours))
-                minute.set("{0:2d}".format(mins))
-                second.set("{0:2d}".format(secs))
+                hour_work.set("{0:2d}".format(hrs_rest))
+                minute_work.set("{0:2d}".format(mins_rest))
+                second_work.set("{0:2d}".format(secs_rest))
 
                 # Update the numbers displayed in the entrybox
                 root.update()
                 time.sleep(1)
 
                 # Time's up display
-                if timing == 0:
+                if timing_rest == 0:
                     messagebox.showinfo("Timer", "Time's up! 🎊")
                     # Set the timer back to 00 instead of 0
-                    hour.set("00")
-                    minute.set("00")
-                    second.set("00")
+                    hour_rest.set("00")
+                    minute_rest.set("00")
+                    second_rest.set("00")
                     # Resets the window size
                     root.geometry("650x200")
 
                 # Subtract the time
-                timing -= 1
+                timing_rest -= 1
 
 
-def second_entry_clear(en):
+def time_input_work():
+    '''Get the values from the hour, minute and seconds entries.
+    If the inputted values are correct, start the timer,
+    notifying the user when it finishes.
+    '''
+    timing_work = 0
+
+    try:
+        timing_work = int(hour_work.get())*3600 + int(minute_work.get())*60 + int(second_work.get())
+
+    except TypeError:
+        messagebox.showinfo("Error", "Please check your entry.")
+
+    finally:
+
+        if timing_work == 0 or timing_work is None:
+            messagebox.showinfo("Error", "Enter a value.")
+
+        else:
+            while timing_work > -1:
+
+                # Convert minutes to seconds
+                mins_work, secs_work = divmod(timing_work, 60)
+                # Resize the window
+                root.geometry("300x200")
+                # Convert hours to minutes
+                hrs_work = 0
+                if mins_work > 60:
+                    hrs_work, mins_work = divmod(mins_work, 60)
+
+                # Display 2 digits
+                hour_work.set("{0:2d}".format(hrs_work))
+                minute_work.set("{0:2d}".format(mins_work))
+                second_work.set("{0:2d}".format(secs_work))
+
+                # Update the numbers displayed in the entrybox
+                root.update()
+                time.sleep(1)
+
+                # Time's up display
+                if timing_work == 0:
+                    # Set the timer back to 00 instead of 0
+                    hour_work.set("00")
+                    minute_work.set("00")
+                    second_work.set("00")
+                    # calculates rest
+                    time_input_rest()
+                # Subtract the time
+                timing_work -= 1
+
+
+def second_entry_clear_work(en):
     '''Clear the second entry if it reaches zero'''
-    if second_entry.get() == "00" or second_entry.get() == "0":
-        second_entry.delete(0, tk.END)
+    if second_entry_work.get() == "00" or second_entry_work.get() == "0":
+        second_entry_work.delete(0, tk.END)
 
 
-def minute_entry_clear(en):
+def second_entry_clear_rest(en):    
+    if second_entry_rest.get() == "00" or second_entry_rest.get() == "0":
+        second_entry_rest.delete(0, tk.END)
+
+
+def minute_entry_clear_work(en):
     '''Clear the minute entry if it reaches zero'''
-    if minute_entry.get() == "00" or minute_entry.get() == "0":
-        minute_entry.delete(0, tk.END)
+    if minute_entry_work.get() == "00" or minute_entry_work.get() == "0":
+        minute_entry_work.delete(0, tk.END)
 
 
-def hour_entry_clear(en):
+def minute_entry_clear_rest(en):    
+    if minute_entry_rest.get() == "00" or minute_entry_rest.get() == "0":
+        minute_entry_rest.delete(0, tk.END)
+
+
+def hour_entry_clear_work(en):
     '''Clear the hour entry if it reaches zero'''
-    if hour_entry.get() == "00" or hour_entry.get() == "0":
-        hour_entry.delete(0, tk.END)
+    if hour_entry_work.get() == "00" or hour_entry_work.get() == "0":
+        hour_entry_work.delete(0, tk.END)
+
+
+def hour_entry_clear_rest(en):    
+    if hour_entry_rest.get() == "00" or hour_entry_rest.get() == "0":
+        hour_entry_rest.delete(0, tk.END)
 
 
 def new_task():
@@ -183,25 +292,32 @@ def main():
     # --- TIMER ---
 
     # Set the values of time to 0
-    hour.set("00")
-    minute.set("00")
-    second.set("00")
+    hour_work.set("00")
+    minute_work.set("00")
+    second_work.set("00")
+    
+    hour_rest.set("00")
+    minute_rest.set("00")
+    second_rest.set("00")
 
     # Labels for the hours, minutes, and seconds
     # -- Unused so we are commenting it out for now
     # hour_text = tk.Label(root, font=(FONT, FONT_SIZE_TODO), fg="#EE4540")
 
     # Button to activate the timer
-    button_entry = tk.Button(root, text="Start!", bd="0",
-                             command=time_input, width=38,
+    button_entry = tk.Button(tab_frame_1, text="Start!", bd="0",
+                             command=time_input_work, width=38,
                              compound="c",
                              fg=ENTRY_FOREGROUND, bg=ENTRY_BACKGROUND)
-    button_entry.place(x=10, y=75)
+    button_entry.place(x=10, y=105)
 
     # Bind the entry boxes
-    hour_entry.bind("<Button-1>", hour_entry_clear)
-    minute_entry.bind("<Button-1>", minute_entry_clear)
-    second_entry.bind("<Button-1>", second_entry_clear)
+    hour_entry_work.bind("<Button-1>", hour_entry_clear_work)
+    minute_entry_work.bind("<Button-1>", minute_entry_clear_work)
+    second_entry_work.bind("<Button-1>", second_entry_clear_work)
+    hour_entry_rest.bind("<Button-1>", hour_entry_clear_rest)
+    minute_entry_rest.bind("<Button-1>", minute_entry_clear_rest)
+    second_entry_rest.bind("<Button-1>", second_entry_clear_rest)
 
     # --- TO-DO LIST ---
 
